@@ -85,6 +85,9 @@ If your repository is private, log in, follow prompts, and try again.
 
    docker login ghcr.io
 
+## References
+
+Based on work in https://github.com/nextstrain/docker-base.
 
 <!-- global references -->
 
