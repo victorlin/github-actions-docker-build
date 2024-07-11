@@ -28,7 +28,8 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: |
+    - name: Build and push image
+      run: |
         image_tag="ghcr.io/${{ github.repository }}:${{ github.run_id }}"
         ./build \
           --tag "$image_tag" \
