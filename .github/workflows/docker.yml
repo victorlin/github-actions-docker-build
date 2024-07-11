@@ -11,7 +11,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: build (${{ matrix.runner.arch }})
+    strategy:
+      fail-fast: true
+      matrix:
+        runner:
+          - name: ubuntu-latest
+            arch: amd64
+          - name: macos-14
+            arch: arm64
+    runs-on: ${{ matrix.runner.name }}
     permissions:
       contents: read
       packages: write
@@ -30,7 +39,7 @@ jobs:
 
     - name: Build and push image
       run: |
-        image_tag="ghcr.io/${{ github.repository }}:${{ github.run_id }}"
+        image_tag="ghcr.io/${{ github.repository }}:${{ github.run_id }}-${{ matrix.runner.arch }}"
         ./build \
           --tag "$image_tag" \
           --push
