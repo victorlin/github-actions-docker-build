@@ -31,6 +31,13 @@ jobs:
     # Uncomment this if you are building for a non-native --platform
     # - uses: docker/setup-qemu-action@v3
 
+    # Set up docker on macOS
+    # <https://github.com/actions/runner/issues/1456>
+    - if: runner.os == 'macos'
+      run: |
+        brew install docker
+        colima start
+
     - uses: docker/login-action@v3
       with:
         registry: ghcr.io
