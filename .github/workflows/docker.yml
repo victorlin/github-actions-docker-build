@@ -2,8 +2,6 @@ name: docker
 
 on:
   push:
-    branches:
-      - main
     paths:
       - .github/workflows/docker.yml
       - build
@@ -30,12 +28,11 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: |
+    - name: Build and push image
+      run: |
         image_tag="ghcr.io/${{ github.repository }}:${{ github.run_id }}"
-        image_latest="ghcr.io/${{ github.repository }}:latest"
         ./build \
           --tag "$image_tag" \
-          --tag "$image_latest" \
           --push
 
         cat >"$GITHUB_STEP_SUMMARY" <<~~
