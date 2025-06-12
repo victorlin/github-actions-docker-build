@@ -79,11 +79,15 @@ is built for `linux/amd64` and you are using a Mac running on Apple silicon
 
 If you repository is public, log out and try again.
 
-   docker logout ghcr.io
+    docker logout ghcr.io
 
 If your repository is private, log in, follow prompts, and try again.
 
-   docker login ghcr.io
+    docker login ghcr.io
+
+### `docker push` permission denied
+
+[Configure `GITHUB_TOKEN`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#configuring-the-default-github_token-permissions) to have read and write permissions.
 
 ## References
 
